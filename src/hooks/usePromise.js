@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
-function useFetch(resolver) {
-  const [isLoading, setIsLoading] = useState(false);
+function usePromise(resolver) {
+  const [isPending, setPending] = useState(false);
   const [error, setError] = useState(undefined);
   const [resolvedValue, setValue] = useState(undefined);
   const resolving = useRef(null);
@@ -13,7 +13,7 @@ function useFetch(resolver) {
         resolving.current = resolver;
 
         // reset fetch state values
-        setIsLoading(true);
+        setPending(true);
         setError(undefined);
 
         resolver()
@@ -24,7 +24,7 @@ function useFetch(resolver) {
             setError(e);
           })
           .then(() => {
-            setIsLoading(false);
+            setPending(false);
 
             // reset current resolving back to false
             resolving.current = null;
@@ -35,7 +35,7 @@ function useFetch(resolver) {
     [resolver],
   );
 
-  return [resolvedValue, isLoading, error];
+  return [resolvedValue, isPending, error];
 }
 
-export default useFetch;
+export default usePromise;
