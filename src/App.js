@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import Profile from './Profile';
+
 import './App.css';
 
 function App() {
+  const [id, setId] = useState(1);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Demonstration</h1>
+      <Profile id={id} />
+
+      <button onClick={() => setId(2)}>Load different profile</button>
+      <button onClick={() => setId(16)}>Load unfound profile</button>
     </div>
   );
 }
