@@ -7,7 +7,7 @@ function usePromise(resolver) {
 
   useEffect(
     () => {
-      // reset fetch state values
+      // reset hook state values
       setPending(true);
       setError(undefined);
 
