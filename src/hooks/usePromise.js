@@ -7,9 +7,12 @@ function usePromise(resolver) {
 
   useEffect(
     () => {
-      // reset hook state values
+      // let the component know it's resolving the Promise
       setPending(true);
+
+      // reset hook state values
       setError(undefined);
+      setValue(undefined);
 
       // resolve the Promise
       resolver()
