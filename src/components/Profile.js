@@ -1,12 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
-import { fetchProfile } from './fetch';
-
-import useFetch from './hooks/useFetch';
-
-const Profile = ({ id }) => {
-  const [profile, isLoading, error] = useFetch(useCallback(() => fetchProfile(id), [id]));
-
+const Profile = ({ profile, isLoading, error }) => {
   if (error) {
     return (
       <article>
@@ -26,9 +20,6 @@ const Profile = ({ id }) => {
 
   return (
     <article>
-      <header>
-        <h3>Profile</h3>
-      </header>
       <p>Name: {profile.name}</p>
       <p>Age: {profile.age}</p>
     </article>
